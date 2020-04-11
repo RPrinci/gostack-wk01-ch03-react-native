@@ -27,10 +27,18 @@ export default function App() {
 
     const repository = response.data;
 
-    const idxRepo = repositories.findIndex(x => x.id === id);
-    repositories[idxRepo].likes = repository.likes;
+    // const idxRepo = repositories.findIndex(x => x.id === id);
+    // repositories[idxRepo].likes = repository.likes;
 
-    setRepositories([...repositories]);
+    const repositoriesUpdated = repositories.map(repo => {
+      if (repo.id === id) {
+        return repository;
+      } else {
+        return repo;
+      }
+    });
+
+    setRepositories(repositoriesUpdated);
   }
 
   return (
